@@ -9,8 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     @Autowired
-    static
-    SessionFactory sessionFactory;
+    static UserDaoImpl userDaoImpl;
 
     public static void main(String ...args)
     {
@@ -26,8 +25,7 @@ public class Main {
         user1.setLogin("vasya");
         user1.setPassword("vs12");
 
-        UserDaoImpl userDao = new UserDaoImpl();
-        userDao.createUser(user1);
+        userDaoImpl.createUser(user1);
 
 
 
