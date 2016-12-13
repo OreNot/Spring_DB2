@@ -1,5 +1,4 @@
 import com.belonce.model.entity.User;
-import com.belonce.model.irepository.UserDao;
 import com.belonce.model.repository.UserDaoImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +7,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
-    @Autowired
-    static UserDaoImpl userDaoImpl;
+    //@Autowired
+    //static UserDaoImpl userDaoImpl;
 
     public static void main(String ...args)
     {
         System.out.println("Hello!");
-       // ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
+        SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
         //User user1 = (User) context.getBean("user1");
 
         User user1 = new User();
@@ -25,7 +25,8 @@ public class Main {
         user1.setLogin("vasya");
         user1.setPassword("vs12");
 
-        userDaoImpl.createUser(user1);
+        sessionFactory.getCurrentSession().save(user1);
+        //userDaoImpl.createUser(user1);
 
 
 
