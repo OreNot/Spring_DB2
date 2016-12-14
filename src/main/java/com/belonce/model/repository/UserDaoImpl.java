@@ -5,12 +5,14 @@ import com.belonce.model.irepository.UserDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-@Repository("userDaoImpl")
+@Repository("userDao")
+@Transactional
 public class UserDaoImpl implements UserDao {
 
     @Autowired
-    public SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public User createUser(User user) {
         sessionFactory.getCurrentSession().save(user);

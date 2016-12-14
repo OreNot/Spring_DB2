@@ -3,7 +3,7 @@ package com.belonce.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     public User() {
