@@ -7,16 +7,6 @@
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <bean id="user1" class="com.belonce.model.entity.User">
-        <property name="firstName" value="Igor"/>
-        <property name="lastName" value="Petrov"/>
-        <property name="email" value="igor@mail.ru"/>
-        <property name="login" value="igor"/>
-        <property name="password" value="igor12"/>
-    </bean>
-
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName"
