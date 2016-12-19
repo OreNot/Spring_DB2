@@ -5,6 +5,7 @@
     <context:component-scan base-package="com.belonce.model.entity"/>
     <context:component-scan base-package="com.belonce.model.repository"/>
 
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
     <bean id="user1" class="com.belonce.model.entity.User">
         <property name="firstName" value="Igor"/>

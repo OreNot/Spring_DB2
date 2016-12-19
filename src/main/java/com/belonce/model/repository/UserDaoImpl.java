@@ -15,31 +15,42 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDaoImpl implements UserDao {
 
-    //@Autowired
-    ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
-    private SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
-    Session session;
+    private SessionFactory sessionFactory;
+//    ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+//
+//    private SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
+//    Session session;
+
+    @Autowired
+    public UserDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private Session currentSession()
+    {
+        return sessionFactory.getCurrentSession();
+    }
 
     public User createUser(User user) {
-        try {
-            session = sessionFactory.getCurrentSession();
-        }
-        catch (HibernateException e)
-        {
-            session = sessionFactory.openSession();
-        }
-        session.save(user);
-        //sessionFactory.getCurrentSession().save(user);
+
+        currentSession().save(user);
         return user;
     }
 
     public void updateUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
+
+        currentSession().update(user);
     }
 
     public void deleteUser(User user) {
-        sessionFactory.getCurrentSession().delete(user);
 
+        currentSession().delete(user);
+
+    }
+
+    public User getUserById (long id)
+    {
+        return (User) currentSession().get(User.class, id);
     }
 }
